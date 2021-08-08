@@ -5,6 +5,8 @@ import 'package:trade/screen/login.dart';
 import 'package:trade/screen/signup.dart';
 import 'package:trade/screen/videos.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:trade/screen/config.dart';
+import 'package:http/http.dart' as http;
 
 class uploadVideos extends StatelessWidget {
 
@@ -20,9 +22,9 @@ var videoUrl;
             print(file.size);
             print(file.extension);
             print(file.path);
-            setState((){ videoUrl= file.name;});
+            videoUrl=file.path;
 
-            print(videoUrl);
+            print("url "+videoUrl);
           } else {
             // User canceled the picker
           }
@@ -30,8 +32,15 @@ var videoUrl;
 
   Future saveVideo() async{
     
-    var url = Uri.parse("uri");
+    final url = Uri.parse(Config.SAVE_URL);
+    var request =http.MultipartRequest("POST",url);
+    var uploadVideos=await http.MultipartFile.fromPath("my_Video",videoUrl);
+    request.files.add(uploadVideos);
+    var response = await request.send();
 
+    if(response.statusCode==200){
+      print(response.reasonPhrase);
+    }
   }
 
 
@@ -42,7 +51,13 @@ var videoUrl;
 
       body: Column(children: [
         Center(child: OutlineButton(onPressed: (){ choiceVideos(); },child: Text("Upload Vidoes"),)),
-        SizedBox(height: 20,)
+
+        SizedBox(height: 20,),
+        Text(videoUrl !=null?videoUrl: "Select videos"),
+        SizedBox(height: 20,),
+
+
+        MaterialButton(color: Colors.green, onPressed: (){  saveVideo(); },child: Text("Save Video"),)
       ],),
 
     );

@@ -1,55 +1,70 @@
-import 'package:video_box/video_box.dart';
+import 'dart:convert';
+import 'dart:ui';
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:video_box/video.controller.dart';
+import 'package:trade/screen/login.dart';
+import 'package:trade/screen/playvideochewie.dart';
+import 'package:trade/screen/signup.dart';
+import 'package:http/http.dart' as http;
+import 'package:trade/screen/config.dart';
+import 'package:chewie/chewie.dart';
 
+class videos extends StatelessWidget {
+  getData() async {
+    
+    final url = Uri.parse(
+        "http://192.168.8.102/upload_video_toutorial/fatchvidoes.php");
 
+    var response = await http.get(url);
 
-
-import 'package:video_player/video_player.dart';
-
-class ListVideo extends StatefulWidget {
-  @override
-  _ListVideoState createState() => _ListVideoState();
-}
-
-class _ListVideoState extends State<ListVideo> {
-  List<VideoController> vcs = [];
-
-  @override
-  void initState() {
-    super.initState();
-    for (var i = 0; i < 1; i++) {
-      vcs.add(VideoController(source: VideoPlayerController.network("https://https://www.youtube.com/watch?v=GxxIjgakyfk"))
-        ..initialize());
-    }
-  }
-  
-
-  @override
-  void dispose() {
-    for (var vc in vcs) {
-      vc.dispose();
-    }
-    super.dispose();
+   
+    return json.decode(response.body);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('list video'),
+        title: Text('Connect To Mysql Server'),
       ),
-      body: ListView(
-        children: <Widget>[
-          for (var vc in vcs)
-            Padding(
-              padding: const EdgeInsets.only(top: 12.0),
-              child: AspectRatio(
-                aspectRatio: 16 / 9,
-                child: VideoBox(controller: vc),
-              ),
-            ),
-        ],
+      body: FutureBuilder(
+        future: getData(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          List snap = snapshot.data;
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          if (snapshot.hasError) {
+            return Center(
+              child: Text("Error fecthing Data"),
+            );
+          }
+          return ListView.builder(
+              itemCount: snap.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>VideoApp(
+                          url:
+                              "http://192.168.8.102/upload_video_toutorial/video/" +
+                                  "${snap[index]['video_url']}",
+                        ),
+                      ),
+                    );
+                  },
+                  title: Text("Head: ${snap[index]['video_name']}"),
+                  subtitle: Text("${snap[index]['video_url']}"),
+                );
+              });
+        },
       ),
     );
   }

@@ -186,7 +186,7 @@ class Dashboard extends StatelessWidget {
                       width:160.0,
                       height: 160.0,
                       child:InkWell( 
-                        onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context) => ListVideo()));},
+                        onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context) => videos()));},
                         child: Card(
 
                         color: Color.fromARGB(255,21, 21, 21),
