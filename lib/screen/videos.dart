@@ -15,7 +15,7 @@ class videos extends StatelessWidget {
   getData() async {
     
     final url = Uri.parse(
-        "http://192.168.8.102/upload_video_toutorial/fatchvidoes.php");
+        "http://192.168.8.101/upload_video_toutorial/fatchvidoes.php");
 
     var response = await http.get(url);
 
@@ -29,43 +29,94 @@ class videos extends StatelessWidget {
       appBar: AppBar(
         title: Text('Connect To Mysql Server'),
       ),
-      body: FutureBuilder(
-        future: getData(),
+       body:FutureBuilder(
+        future: getData(), // async work
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          List snap = snapshot.data;
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+           switch (snapshot.connectionState) {
+             case ConnectionState.waiting: return Center(
+             
               child: CircularProgressIndicator(),
             );
-          }
+             default:
+               if (snapshot.hasError)
+                  return Text('Error: ${snapshot.error}');
+               else
+              return 
+          ListView.builder(
+                        itemCount:snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>VideoApp(
+                                    url:
+                                        "http://192.168.8.101/upload_video_toutorial/video/" +
+                                            "${snapshot.data[index]['video_url']}",
+                                  ),
+                                ),
+                              );
+                            },
+                          title: Text("Head: ${snapshot.data[index]['video_name']}"),
+                          subtitle: Text("${snapshot.data[index]['video_url']}"),
+                        );
+                      });
 
-          if (snapshot.hasError) {
-            return Center(
-              child: Text("Error fecthing Data"),
-            );
-          }
-          return ListView.builder(
-              itemCount: snap.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>VideoApp(
-                          url:
-                              "http://192.168.8.102/upload_video_toutorial/video/" +
-                                  "${snap[index]['video_url']}",
-                        ),
-                      ),
-                    );
+                        //////////
+                        ///
+                        ///
+                      }
                   },
-                  title: Text("Head: ${snap[index]['video_name']}"),
-                  subtitle: Text("${snap[index]['video_url']}"),
-                );
-              });
-        },
-      ),
-    );
+                  ),);
+
+
+    //
+    //
+    // FutureBuilder(
+    //     future: getData(),
+    //     builder: (BuildContext context, AsyncSnapshot snapshot) {
+          
+    //       List snap = snapshot.data;
+    //       if (snapshot.connectionState == ConnectionState.waiting) {
+            
+    //         return Center(
+             
+    //           child: CircularProgressIndicator(),
+    //         );
+    //       }
+
+    //       if (snapshot.hasError) {
+    //         return Center(
+    //           child: CircularProgressIndicator(),
+    //         );
+    //       }
+          
+    //       return 
+    //        ListView.builder(
+    //           itemCount: snap.length,
+    //           itemBuilder: (context, index) {
+    //             return ListTile(
+    //               onTap: () {
+    //                 Navigator.push(
+    //                   context,
+    //                   MaterialPageRoute(
+    //                     builder: (context) =>VideoApp(
+    //                       url:
+    //                           "http://192.168.8.101/upload_video_toutorial/video/" +
+    //                               "${snap[index]['video_url']}",
+    //                     ),
+    //                   ),
+    //                 );
+    //               },
+    //               title: Text("Head: ${snap[index]['video_name']}"),
+    //               subtitle: Text("${snap[index]['video_url']}"),
+    //             );
+    //           });
+
+              
+    //     },
+    //   ),
+    // );
   }
 }

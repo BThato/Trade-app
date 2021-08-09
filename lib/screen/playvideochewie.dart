@@ -66,6 +66,7 @@ class VideoApp extends StatefulWidget {
   final  url;
   VideoApp({required this.url});
   
+    
 //   PlayVideoChewis({required this.url});
   _VideoAppState createState() => _VideoAppState();
 }
@@ -83,11 +84,15 @@ class _VideoAppState extends State<VideoApp> {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {});
       });
+
+
+      
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+       debugShowCheckedModeBanner: false,
       title: 'Video Demo',
       home: Scaffold(
         body: Center(
@@ -95,14 +100,20 @@ class _VideoAppState extends State<VideoApp> {
               ? AspectRatio(
                   aspectRatio: _controller.value.aspectRatio,
                   child: VideoPlayer(_controller),
+                  
+                  
                 )
               : Container(),
+              
+              
         ),
+        
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             setState(() {
               _controller.value.isPlaying
-                  ? _controller.pause()
+                  ?
+                   _controller.pause()
                   : _controller.play();
             });
           },
