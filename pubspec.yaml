@@ -36,6 +36,7 @@ dependencies:
   chewie: ^1.2.2
   file_picker: ^3.0.4
   http: 
+  wakelock: ^0.5.3+3
 
 dev_dependencies:
   flutter_test:

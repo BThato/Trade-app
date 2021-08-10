@@ -10,12 +10,14 @@ import 'package:trade/screen/signup.dart';
 import 'package:http/http.dart' as http;
 import 'package:trade/screen/config.dart';
 import 'package:chewie/chewie.dart';
+import 'package:trade/screen/videolist.dart';
+import 'package:video_player/video_player.dart';
 
 class videos extends StatelessWidget {
   getData() async {
     
     final url = Uri.parse(
-        "http://192.168.8.101/upload_video_toutorial/fatchvidoes.php");
+        "http://tradetruth.000webhostapp.com/upload_video_toutorial/fatchvidoes.php");
 
     var response = await http.get(url);
 
@@ -27,7 +29,7 @@ class videos extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Connect To Mysql Server'),
+        title: Text('Toutorial'),
       ),
        body:FutureBuilder(
         future: getData(), // async work
@@ -39,7 +41,9 @@ class videos extends StatelessWidget {
             );
              default:
                if (snapshot.hasError)
-                  return Text('Error: ${snapshot.error}');
+                  return Center(child: Text("Please connect to the Internet")) ;
+
+                  
                else
               return 
           ListView.builder(
@@ -58,8 +62,12 @@ class videos extends StatelessWidget {
                                 ),
                               );
                             },
-                          title: Text("Head: ${snapshot.data[index]['video_name']}"),
-                          subtitle: Text("${snapshot.data[index]['video_url']}"),
+                          title:Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text("Head: ${snapshot.data[index]['video_name']}"),) ,
+                          subtitle: VideoList(videoPlayerController: VideoPlayerController.network("http://192.168.8.101/upload_video_toutorial/video/" +
+                                            "${snapshot.data[index]['video_url']}"),looping: true,),
+                          
                         );
                       });
 

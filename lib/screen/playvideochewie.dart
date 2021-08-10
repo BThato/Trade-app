@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:video_box/video.controller.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
+import 'package:wakelock/wakelock.dart';
 
 // class PlayVideoChewis extends StatefulWidget {
 //   final String url;
@@ -72,18 +73,81 @@ class VideoApp extends StatefulWidget {
 }
 
 class _VideoAppState extends State<VideoApp> {
-  late VideoPlayerController _controller;
+
+// late ChewieController chewieController;
+
+//   @override
+//   void initState(){
+//     super.initState();
+
+//     chewieController =ChewieController(
+//       videoPlayerController: VideoPlayerController.network(widget.url),
+//       looping: true,
+//       autoPlay: false,
+//       aspectRatio: 3/2,
+//       errorBuilder: (context,errorMsg){
+//          return Center(child: CircularProgressIndicator(backgroundColor: Colors.red,),);
+//       }
+//     );
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//      debugShowCheckedModeBanner: false;
+//     return Container(
+//       height: 250,
+//       // width: MediaQuery.of(context).size.width,
+//       child: Chewie(controller: chewieController,),
+      
+//     );
+//   }
+
+
+//   @override
+//   void dispose() {
+
+   
+//     // TODO: implement dispose
+//     super.dispose();
+//      chewieController.dispose();
+//   }
+
+
+//////////////working code
+
+
+  late  ChewieController _controller;
 
   @override
   void initState() {
     print( widget.url);
     super.initState();
-    _controller = VideoPlayerController.network(
-       widget.url)
-      ..initialize().then((_) {
+    
+
+    Wakelock.enable();
+
+
+     _controller =ChewieController(
+      videoPlayerController: VideoPlayerController.network(widget.url)..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {});
-      });
+      }),
+      looping: true,
+      autoPlay: false,
+      aspectRatio: 3/2,
+       allowedScreenSleep: true,
+      errorBuilder: (context,errorMsg){
+         return Center(child: CircularProgressIndicator(backgroundColor: Colors.red,),);
+      }
+    );
+
+    // _controller = 
+    // VideoPlayerController.network(
+    //    widget.url)
+    //   ..initialize().then((_) {
+    //     // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+    //     setState(() {});
+    //   });
 
 
       
@@ -96,31 +160,10 @@ class _VideoAppState extends State<VideoApp> {
       title: 'Video Demo',
       home: Scaffold(
         body: Center(
-          child: _controller.value.isInitialized
-              ? AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller),
-                  
-                  
-                )
-              : Container(),
-              
-              
+          child:Chewie(controller: _controller,),    
         ),
         
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              _controller.value.isPlaying
-                  ?
-                   _controller.pause()
-                  : _controller.play();
-            });
-          },
-          child: Icon(
-            _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-          ),
-        ),
+       
       ),
     );
   }
