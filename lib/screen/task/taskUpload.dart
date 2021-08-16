@@ -41,7 +41,7 @@ class Taskuploads extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Upload and Play"),
+        title: Text("Upload The Task Completed task"),
       ),
       body: Column(
         children: [
