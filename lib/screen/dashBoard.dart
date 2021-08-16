@@ -2,7 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:trade/screen/login.dart';
-import 'package:trade/screen/signup.dart';
+import 'package:trade/screen/task/Tasklist.dart';
+
 import 'package:trade/screen/videoPlayer/videos.dart';
 import 'package:trade/screen/videoPlayer/uploadVidoes.dart';
 
@@ -58,7 +59,7 @@ class Dashboard extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LoginPage()));
+                                    builder: (context) => TaskList()));
                           },
                           child: Card(
                             color: Color.fromARGB(255, 21, 21, 21),
@@ -106,7 +107,7 @@ class Dashboard extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LoginPage()));
+                                    builder: (context) => TaskList()));
                           },
                           child: Card(
                             color: Color.fromARGB(255, 21, 21, 21),

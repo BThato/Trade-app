@@ -1,18 +1,15 @@
 import 'dart:convert';
-import 'dart:ui';
-import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:trade/screen/login.dart';
 import 'package:trade/screen/videoPlayer/playvideochewie.dart';
-import 'package:trade/screen/signup.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:trade/screen/config.dart';
-import 'package:chewie/chewie.dart';
+
 import 'package:trade/screen/videoPlayer/videolist.dart';
 import 'package:video_player/video_player.dart';
 
+// ignore: camel_case_types
 class videos extends StatelessWidget {
   getData() async {
     final url = Uri.parse(Config.FETCHDATA_URL);
