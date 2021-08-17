@@ -1,8 +1,5 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-
-import 'package:trade/screen/login.dart';
 import 'package:http/http.dart' as http;
 import 'package:trade/screen/config.dart';
 import 'package:trade/screen/task/taskUpload.dart';
@@ -32,7 +29,7 @@ class TaskList extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             default:
-              if (snapshot.hasError)
+              if (snapshot.hasError || snapshot == Null)
                 return Center(child: Text("Please connect to the Internet"));
               else
                 return ListView.builder(

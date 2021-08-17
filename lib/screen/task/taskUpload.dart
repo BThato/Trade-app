@@ -38,33 +38,148 @@ class Taskuploads extends StatelessWidget {
   }
 
   @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     appBar: AppBar(
+  //       title: Text("Upload The Task Completed task"),
+  //     ),
+  //     body: Column(
+  //       children: [
+  //         Center(
+  //             child: OutlineButton(
+  //           onPressed: () {
+  //             choiceVideos();
+  //           },
+  //           child: Text("Upload Your Task Here"),
+  //         )),
+  //         SizedBox(
+  //           height: 20,
+  //         ),
+  //         Text(videoUrl != null ? videoUrl : "Select videos"),
+  //         SizedBox(
+  //           height: 20,
+  //         ),
+  //         MaterialButton(
+  //           color: Colors.green,
+  //           onPressed: () {
+  //             saveVideo();
+  //           },
+  //           child: Text("task Saved"),
+  //         )
+  //       ],
+  //     ),
+  //   );
+  // }
+
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Upload The Task Completed task"),
-      ),
-      body: Column(
+      body: Stack(
         children: [
-          Center(
-              child: OutlineButton(
-            onPressed: () {
-              choiceVideos();
-            },
-            child: Text("Upload Your Task Here"),
-          )),
-          SizedBox(
-            height: 20,
+          ListView(
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height / 5,
+                    width: MediaQuery.of(context).size.width / 2,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(50),
+                        bottomRight: Radius.circular(50),
+                      ),
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: AssetImage("assets/todo.png"),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    right: 10,
+                    top: 10,
+                    child: Icon(
+                      Icons.more_vert,
+                      size: 40,
+                      color: Colors.black,
+                    ),
+                  )
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "category",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          " widget.article.time",
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "widget.article.title",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        Image.asset(
+                          "assets/todo.png",
+                          height: 30,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "This page shares my bestThis page shares my best articles to read on t To answer thatThis page shares my best articles to read on t To answer that articles to read on t To answer thatThis page shares my best articles to read on t To answer thatThis page shares my best articles to read on t To answer that This page shares my best articles to read on t To answer that This page shares my best articles to read on t To answer thatThis page shares my best articles to read on t To answer that This page shares my best articles to read on t To answer that question, I like to write about science-based ways to solve practical problems.You’ll find interesting articles to read on topics like how to stop procrastinating as well as personal recommendations",
+                      style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 20,
+//                      fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
           ),
-          Text(videoUrl != null ? videoUrl : "Select videos"),
-          SizedBox(
-            height: 20,
-          ),
-          MaterialButton(
-            color: Colors.green,
-            onPressed: () {
-              saveVideo();
-            },
-            child: Text("task Saved"),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+              ),
+            ),
           )
         ],
       ),
