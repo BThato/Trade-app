@@ -6,6 +6,11 @@ import 'package:http/http.dart' as http;
 // ignore: must_be_immutable
 class Taskuploads extends StatelessWidget {
   var videoUrl;
+  var numberList;
+  @override
+  final url;
+  Taskuploads({required this.url});
+
   choiceVideos() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
@@ -87,10 +92,6 @@ class Taskuploads extends StatelessWidget {
                         bottomLeft: Radius.circular(50),
                         bottomRight: Radius.circular(50),
                       ),
-                      image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: AssetImage("assets/todo.png"),
-                      ),
                     ),
                   ),
                   Positioned(
@@ -121,9 +122,9 @@ class Taskuploads extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          " widget.article.time",
+                          this.url,
                           style: TextStyle(
-                            color: Colors.grey,
+                            color: Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.w700,
                           ),
@@ -134,7 +135,7 @@ class Taskuploads extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      "widget.article.title",
+                      this.url,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,
@@ -156,11 +157,11 @@ class Taskuploads extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      "This page shares my bestThis page shares my best articles to read on t To answer thatThis page shares my best articles to read on t To answer that articles to read on t To answer thatThis page shares my best articles to read on t To answer thatThis page shares my best articles to read on t To answer that This page shares my best articles to read on t To answer that This page shares my best articles to read on t To answer thatThis page shares my best articles to read on t To answer that This page shares my best articles to read on t To answer that question, I like to write about science-based ways to solve practical problems.You’ll find interesting articles to read on topics like how to stop procrastinating as well as personal recommendations",
+                      " articles to read on t To answer thatThis page shares my best articles to read on t To answer that This page shares my best articles to read on t To answer that This page shares my best articles to read on t To answer thatThis page shares my best articles to read on t To answer that This page shares my best articles to read on t To answer that question, I like to write about science-based ways to solve practical problems.You’ll find interesting articles to read on topics like how to stop procrastinating as well as personal recommendations",
                       style: TextStyle(
-                        color: Colors.black54,
+                        color: Colors.black,
                         fontSize: 20,
-//                      fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ],

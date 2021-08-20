@@ -78,7 +78,10 @@ class TaskList extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Taskuploads()));
+                                        builder: (context) => Taskuploads(
+                                              url:
+                                                  "${snapshot.data[index]['video_url']}",
+                                            )));
                               },
                               trailing: Icon(Icons.keyboard_arrow_right,
                                   color: Colors.white, size: 30.0))),
