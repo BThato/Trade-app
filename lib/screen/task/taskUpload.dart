@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:trade/screen/config.dart';
 import 'package:http/http.dart' as http;
+import 'package:trade/screen/login.dart';
 
 // ignore: must_be_immutable
 class Taskuploads extends StatelessWidget {
@@ -43,143 +44,87 @@ class Taskuploads extends StatelessWidget {
   }
 
   @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     appBar: AppBar(
-  //       title: Text("Upload The Task Completed task"),
-  //     ),
-  //     body: Column(
-  //       children: [
-  //         Center(
-  //             child: OutlineButton(
-  //           onPressed: () {
-  //             choiceVideos();
-  //           },
-  //           child: Text("Upload Your Task Here"),
-  //         )),
-  //         SizedBox(
-  //           height: 20,
-  //         ),
-  //         Text(videoUrl != null ? videoUrl : "Select videos"),
-  //         SizedBox(
-  //           height: 20,
-  //         ),
-  //         MaterialButton(
-  //           color: Colors.green,
-  //           onPressed: () {
-  //             saveVideo();
-  //           },
-  //           child: Text("task Saved"),
-  //         )
-  //       ],
-  //     ),
-  //   );
-  // }
-
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text("Flut"),
+      ),
+      body: Column(
         children: [
-          ListView(
-            children: [
-              Stack(
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height / 5,
-                    width: MediaQuery.of(context).size.width / 2,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(50),
-                        bottomRight: Radius.circular(50),
-                      ),
+          Container(
+            child: Hero(
+              tag: "times",
+              child: Image.asset(
+                "assets/todo.png",
+                width: 64.0,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.all(10.0),
+                  child: Text(
+                    "article.title",
+                    style: TextStyle(
+                      color: Colors.grey[800],
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22,
                     ),
                   ),
-                  Positioned(
-                    right: 10,
-                    top: 10,
-                    child: Icon(
-                      Icons.more_vert,
-                      size: 40,
-                      color: Colors.black,
-                    ),
-                  )
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "category",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          this.url,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      this.url,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Image.asset(
-                          "assets/todo.png",
-                          height: 30,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      " articles to read on t To answer thatThis page shares my best articles to read on t To answer that This page shares my best articles to read on t To answer that This page shares my best articles to read on t To answer thatThis page shares my best articles to read on t To answer that This page shares my best articles to read on t To answer that question, I like to write about science-based ways to solve practical problems.You’ll find interesting articles to read on topics like how to stop procrastinating as well as personal recommendations",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
                 ),
-              )
-            ],
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-              ),
+                Container(
+                  alignment: Alignment.topRight,
+                  margin: EdgeInsets.all(5.0),
+                  child: Text(
+                    "article.publishedAt",
+                    style: TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 100),
+                  child: Text(
+                    "Identify a peak formation high and a peak formation low. Then identify all" +
+                        "the features of the 3 tiered cycle within both on a 3 day and an intraday" +
+                        "cycle." +
+                        "Understand that they will not all looked perfect but nonetheless there are"
+                            "variations on the theme and being able to identify the variations is" +
+                        "fundamentally important.",
+                    style: TextStyle(
+                      color: Colors.grey[800],
+                      //fontWeight: FontWeight,
+                      fontSize: 17,
+                    ),
+                  ),
+                ),
+                new Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      FloatingActionButton(
+                        backgroundColor: const Color(0xff03dac6),
+                        foregroundColor: Colors.black,
+                        onPressed: () {
+                          // Respond to button press
+                          choiceVideos();
+                        },
+                        child: Icon(Icons.add),
+                      ),
+                      FloatingActionButton(
+                        backgroundColor: const Color(0xff03dac6),
+                        foregroundColor: Colors.black,
+                        onPressed: () {
+                          // Respond to button press
+                          saveVideo();
+                        },
+                        child: Icon(Icons.save),
+                      ),
+                    ])
+              ],
             ),
           )
         ],

@@ -68,8 +68,6 @@ class TaskList extends StatelessWidget {
 
                               subtitle: Row(
                                 children: <Widget>[
-                                  Icon(Icons.linear_scale,
-                                      color: Colors.yellowAccent),
                                   Text(DateTime.now().toString(),
                                       style: TextStyle(color: Colors.white))
                                 ],
@@ -80,7 +78,7 @@ class TaskList extends StatelessWidget {
                                     MaterialPageRoute(
                                         builder: (context) => Taskuploads(
                                               url:
-                                                  "${snapshot.data[index]['video_url']}",
+                                                  "${snapshot.data[index]['video_name']}",
                                             )));
                               },
                               trailing: Icon(Icons.keyboard_arrow_right,

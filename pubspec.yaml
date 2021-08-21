@@ -37,6 +37,7 @@ dependencies:
   file_picker: ^3.0.4
   http: 
   wakelock: ^0.5.3+3
+  flutter_speed_dial: ^4.2.0
 
 dev_dependencies:
   flutter_test:
