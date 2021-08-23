@@ -38,10 +38,17 @@ dependencies:
   http: 
   wakelock: ^0.5.3+3
   flutter_speed_dial: ^4.2.0
+  firebase: ^9.0.1
+  firebase_auth: ^3.0.2
+  extension_google_sign_in_as_googleapis_auth: ^2.0.2
+  google_sign_in: ^5.0.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+   
+  #firebase_auth: "^0.20.1"
+  firebase_core: "^1.4.0"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

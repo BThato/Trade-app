@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">1090523440011-3ol4c9t4e1malkffkseii7pfvpk8vbc2.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">1090523440011</string>
+    <string name="google_api_key" translatable="false">AIzaSyB0aXoKiXosdYRcw4mB4XSUSUQSfSUeXtI</string>
+    <string name="google_app_id" translatable="false">1:1090523440011:android:16f45957fb7a32a7dbc58e</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyB0aXoKiXosdYRcw4mB4XSUSUQSfSUeXtI</string>
+    <string name="google_storage_bucket" translatable="false">chatapp-d9a1b.appspot.com</string>
+    <string name="project_id" translatable="false">chatapp-d9a1b</string>
+</resources>

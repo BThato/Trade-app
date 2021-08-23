@@ -6,6 +6,8 @@ import 'package:trade/screen/task/Tasklist.dart';
 
 import 'package:trade/screen/videoPlayer/videos.dart';
 import 'package:trade/screen/videoPlayer/uploadVidoes.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Dashboard extends StatelessWidget {
   @override
@@ -152,10 +154,14 @@ class Dashboard extends StatelessWidget {
                       height: 160.0,
                       child: InkWell(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => uploadVideos()));
+                          _signOut() async {
+                            await FirebaseAuth.instance.signOut();
+
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginPage()));
+                          }
                         },
                         child: Card(
                             color: Color.fromARGB(255, 21, 21, 21),

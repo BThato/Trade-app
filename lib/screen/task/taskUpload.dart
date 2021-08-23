@@ -48,7 +48,7 @@ class Taskuploads extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Flut"),
+        title: Text("Task Details"),
       ),
       body: Column(
         children: [
